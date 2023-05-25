@@ -33,4 +33,10 @@ public class Post {
 
     // setter 생성은 지양 <- setter 사용 시 해당 클래스의 인스턴스 값들이 언제 어디서 변해야 하는지 코드 상으로 명확하게 구분할 수 없음
     // 해당 필드의 값 변경이 필요한 경우, 그 목적과 의도를 명확히 나타내는 메서드 추가
+
+    // 2023.5.26(금) 1h15
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
