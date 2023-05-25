@@ -16,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 //@DataJpaTest // 코드스테이츠 메인프로젝트 시 사용한 어노테이션
 @SpringBootTest
 public class PostRepositoryTest {
-
     @Autowired
     PostRepository postRepository;
 
