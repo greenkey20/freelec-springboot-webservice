@@ -1,4 +1,4 @@
-package com.greenkey.book;
+package com.greenkey.book.web;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 // 2023.5.7(일) 19h50
 //@ExtendWith(SpringRunner.class)
-@WebMvcTest // web 관련 스프링 테스트 애너테이션
+@WebMvcTest // web 관련 스프링 테스트 애너테이션, JPA 기능 작동x, Controller(Advice) 등 외부 연동과 관련된 부분만 활성화됨
 public class HelloControllerTest {
 
     @Autowired // 스프링이 관리하는 bean 주입받기

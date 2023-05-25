@@ -1,4 +1,4 @@
-package com.greenkey.book.dto;
+package com.greenkey.book.web.dto;
 
 import com.greenkey.book.web.dto.HelloResponseDto;
 import org.junit.jupiter.api.Test;
