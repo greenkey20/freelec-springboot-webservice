@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 // 2023.5.26(금) 0h25
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // Tomcat initialized with port(s): 0 (http) + Tomcat started on port(s): 61687 (http) with context path ''
 public class PostApiControllerTest {
     @LocalServerPort
     private int port;
@@ -50,7 +50,13 @@ public class PostApiControllerTest {
         String url = "http://localhost:" + port + "/api/v1/posts";
 
         // when
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class); // 나의 질문 = 이게 PostApiController를 호출하는 건가? -> API 문서 읽어봐
+        // requestDto = POST 대상 객체 -> insert
+        //    into
+        //        post
+        //        (author, content, title)
+        //    values
+        //        (?, ?, ?)
 
         // then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
