@@ -31,6 +31,18 @@ public class Post {
         this.author = author;
     }
 
+    /* 이 entity가 테이블로 생성될 때 쿼리
+    drop table if exists post
+
+    create table post (
+       id bigint not null auto_increment,
+        author varchar(255),
+        content TEXT not null,
+        title varchar(500) not null,
+        primary key (id)
+    ) engine=InnoDB
+     */
+
     // setter 생성은 지양 <- setter 사용 시 해당 클래스의 인스턴스 값들이 언제 어디서 변해야 하는지 코드 상으로 명확하게 구분할 수 없음
     // 해당 필드의 값 변경이 필요한 경우, 그 목적과 의도를 명확히 나타내는 메서드 추가
 

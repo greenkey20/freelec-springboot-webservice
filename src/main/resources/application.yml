@@ -7,7 +7,7 @@ spring:
         format_sql: true # SQL pretty print
   h2:
     console:
-      enabled: true
+      enabled: true # web console 옵션 활성화
       path: /h2
   datasource:
     url: jdbc:h2:mem:test;MODE=MYSQL
