@@ -1,5 +1,6 @@
 package com.greenkey.book.domain.post;
 
+import com.greenkey.book.domain.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter // Lombok -> 코드 변경량 최소화
 @NoArgsConstructor // Lombok
 @Entity // JPA, 테이블과 링크될 + 테이블 생성 및 스키마 변경 시 기준이 되는 + db와 맞닿은 + 서비스 클래스 및 비즈니스 로직 동작의 기준이 되는, 핵심 클래스
-public class Post {
+public class Post extends BaseTimeEntity {
     @Id // 해당 테이블의 pk
     @GeneratedValue(strategy = GenerationType.IDENTITY) // pk 생성 규칙, IDENTITY = auto-increment
     private Long id;
