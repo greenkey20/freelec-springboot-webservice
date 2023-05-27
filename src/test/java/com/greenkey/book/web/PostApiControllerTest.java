@@ -20,10 +20,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 // 2023.5.26(금) 0h25
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 // Tomcat initialized with port(s): 0 (http) + Tomcat started on port(s): 61687 (http) with context path ''
 public class PostApiControllerTest {
     @LocalServerPort
