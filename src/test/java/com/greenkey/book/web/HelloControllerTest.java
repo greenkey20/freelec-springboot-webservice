@@ -4,22 +4,26 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 // 2023.5.7(일) 19h50
-//@ExtendWith(SpringRunner.class)
-@WebMvcTest // web 관련 스프링 테스트 애너테이션, JPA 기능 작동x, Controller(Advice) 등 외부 연동과 관련된 부분만 활성화됨
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = HelloController.class) // web 관련 스프링 테스트 애너테이션, JPA 기능 작동x, Controller(Advice) 등 외부 연동과 관련된 부분만 활성화됨
+//@SpringBootTest(webEnvironment = RANDOM_PORT)
+//@ContextConfiguration(classes = FreelecSpringbootWebserviceApplication.class)
+//@MockBean(JpaMetamodelMappingContext.class)
 public class HelloControllerTest {
 
     @Autowired // 스프링이 관리하는 bean 주입받기
     private MockMvc mvc; // 스프링 MVC 테스트의 시작점 + web api 테스트 시 사용
+
+//    @MockBean
+//    private PostService postService;
 
     @Test
     public void hello가_리턴된다() throws Exception {
