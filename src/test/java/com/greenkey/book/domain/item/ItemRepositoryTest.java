@@ -50,4 +50,32 @@ class ItemRepositoryTest {
         assertThat(item.getName()).isEqualTo(name);
         assertThat(item.getPrice()).isEqualTo(price);
     }
+
+    // 2023.5.31(수) 0h55
+    @Test
+    @DisplayName("상품명 조회 테스트")
+    public void findByNameTest() {
+        // given
+        String name = "테스트 상품";
+        int price = 10000;
+        int stockNum = 100;
+        String description = "테스트 상품 상세 설명";
+        ItemSellStatus itemSellStatus = ItemSellStatus.SELL;
+
+        for (int i = 1; i <= 10; i++) {
+            itemRepository.save(Item.builder()
+                    .name(name + i)
+                    .price(price)
+                    .stockNum(stockNum)
+                    .description(description + i)
+                    .itemSellStatus(itemSellStatus)
+                    .build());
+        }
+
+        // when
+        List<Item> itemsList = itemRepository.findByName(name + 1);
+
+        assertThat(itemsList.size()).isEqualTo(1);
+        assertThat(itemsList.get(0).getName()).isEqualTo(name + 1);
+    }
 }
