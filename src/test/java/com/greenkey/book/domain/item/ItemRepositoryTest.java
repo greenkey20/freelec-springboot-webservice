@@ -16,6 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest // 통합 테스트를 위해 스프링 부트에서 제공하는 어노테이션, 애플리케이션 실제 구동 시처럼 모든 Bean을 IoC 컨테이너에 등록 -> 애플리케이션 규모가 크면 속도 느려질 수 있음
 @TestPropertySource(locations = "classpath:application-test.yml") // 테스트 코드 실행 시에는 h2 db 사용
 class ItemRepositoryTest {
+    private String name = "테스트 상품";
+
     @Autowired // 사용하기 위해 Bean 주입
     ItemRepository itemRepository;
 
@@ -51,12 +53,8 @@ class ItemRepositoryTest {
         assertThat(item.getPrice()).isEqualTo(price);
     }
 
-    // 2023.5.31(수) 0h55
-    @Test
-    @DisplayName("상품명 조회 테스트")
-    public void findByNameTest() {
-        // given
-        String name = "테스트 상품";
+    // 2023.5.31(수) 1h15 테스트용 상품 10개 만드는 메서드
+    private void createItemsList() {
         int price = 10000;
         int stockNum = 100;
         String description = "테스트 상품 상세 설명";
@@ -64,18 +62,26 @@ class ItemRepositoryTest {
 
         for (int i = 1; i <= 10; i++) {
             itemRepository.save(Item.builder()
-                    .name(name + i)
+                    .name(this.name + i)
                     .price(price)
                     .stockNum(stockNum)
                     .description(description + i)
                     .itemSellStatus(itemSellStatus)
                     .build());
         }
+    }
+
+    // 2023.5.31(수) 0h55
+    @Test
+    @DisplayName("상품명 조회 테스트")
+    public void findByNameTest() {
+        // given
+        createItemTest();
 
         // when
-        List<Item> itemsList = itemRepository.findByName(name + 1);
+        List<Item> itemsList = itemRepository.findByName(this.name + 1);
 
         assertThat(itemsList.size()).isEqualTo(1);
-        assertThat(itemsList.get(0).getName()).isEqualTo(name + 1);
+        assertThat(itemsList.get(0).getName()).isEqualTo(this.name + 1);
     }
 }
