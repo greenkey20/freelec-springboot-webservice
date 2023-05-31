@@ -54,7 +54,7 @@ class ItemRepositoryTest {
     }
 
     // 2023.5.31(수) 1h15 테스트용 상품 10개 만드는 메서드
-    private void createItemsList() {
+    public void createItemsList() {
         int price = 10000;
         int stockNum = 100;
         String description = "테스트 상품 상세 설명";
@@ -67,7 +67,20 @@ class ItemRepositoryTest {
                     .stockNum(stockNum)
                     .description(description + i)
                     .itemSellStatus(itemSellStatus)
-                    .build());
+                    .build()); // Item(id=1, name=테스트 상품, price=10000, stockNum=100, description=테스트 상품 상세 설명, itemSellStatus=SELL)
+
+            // itemRepository에 테스트 상품 하나만 저장되는 건 이 메서드의 내용 때문이 아니었음 -> 실수로 이 메서드를 호출하지 않고 createItemTest()를 호출했기 때문
+            /*
+            Item stubItem = Item.builder()
+                    .name(this.name + i)
+                    .price(price + i)
+                    .stockNum(stockNum)
+                    .description(description + i)
+                    .itemSellStatus(itemSellStatus)
+                    .build();
+
+            itemRepository.save(stubItem);
+             */
         }
     }
 
@@ -76,12 +89,24 @@ class ItemRepositoryTest {
     @DisplayName("상품명 조회 테스트")
     public void findByNameTest() {
         // given
-        createItemTest();
+        createItemsList();
+
+        // 2023.5.31(수) 17h35 이 테스트가 의도하는대로 동작하지 않아서 확인
+        /*
+        List<Item> allItemsList = itemRepository.findAll();
+
+        System.out.println("---- 상품명 조회 테스트 중 print ----");
+        for (Item item : allItemsList) {
+            System.out.println(item);
+        }
+         */
 
         // when
         List<Item> itemsList = itemRepository.findByName(this.name + 1);
 
+        // then
+        Item item = itemsList.get(0);
         assertThat(itemsList.size()).isEqualTo(1);
-        assertThat(itemsList.get(0).getName()).isEqualTo(this.name + 1);
+        assertThat(item.getName()).isEqualTo(this.name + 1);
     }
 }
