@@ -150,4 +150,19 @@ class ItemRepositoryTest {
         assertThat(searchResult.size()).isEqualTo(6);
         assertThat(searchResult.get(0).getId()).isEqualTo(10);
     }
+
+    // 2023.5.31(수) 18h25
+    @Test
+    @DisplayName("상품 상세 설명 검색")
+    public void findByDescriptionTest() {
+        // given
+        createItemsList();
+
+        // when
+        List<Item> searchResult = itemRepository.findByDescription(this.description);
+
+        // then
+        assertThat(searchResult.size()).isEqualTo(10);
+        assertThat(searchResult.get(searchResult.size() - 1).getId()).isEqualTo(1);
+    }
 }
