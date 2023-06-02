@@ -1,6 +1,9 @@
 package com.greenkey.book.domain.item;
 
 import com.greenkey.book.constant.ItemSellStatus;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +13,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
+import static com.greenkey.book.domain.item.QItem.item;
 import static org.assertj.core.api.Assertions.assertThat;
 
 // 2023.5.31(수) 0h30
@@ -24,6 +28,9 @@ class ItemRepositoryTest {
 
     @Autowired // 사용하기 위해 Bean 주입
     ItemRepository itemRepository;
+
+    @PersistenceContext
+    EntityManager em;
 
     @AfterEach
     public void cleanUp() {
@@ -165,5 +172,27 @@ class ItemRepositoryTest {
         // then
         assertThat(searchResult.size()).isEqualTo(10);
         assertThat(searchResult.get(searchResult.size() - 1).getId()).isEqualTo(1);
+    }
+
+    // 2023.6.2(금) 23h5
+    @Test
+    @DisplayName("Querydsl 조회 테스트1")
+    public void queryDslTest1() {
+        // given
+        createItemsList();
+
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+//        QItem qItem = QItem.item;
+
+        // when
+        List<Item> searchResult = queryFactory.selectFrom(item)
+                .where(item.itemSellStatus.eq(ItemSellStatus.SELL))
+                .where(item.description.like("%" + "설명" + "%"))
+                .orderBy(item.price.desc())
+                .fetch();
+
+        // then
+        assertThat(searchResult.size()).isEqualTo(10);
+        assertThat(searchResult.get(0).getPrice()).isEqualTo(10010);
     }
 }
