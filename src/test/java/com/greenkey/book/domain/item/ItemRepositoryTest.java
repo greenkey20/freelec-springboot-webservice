@@ -148,7 +148,8 @@ class ItemRepositoryTest {
 
         // then
         assertThat(searchResult.size()).isEqualTo(6);
-        assertThat(searchResult.get(0).getId()).isEqualTo(10);
+//        assertThat(searchResult.get(0).getId()).isEqualTo(10); // 2023.6.2(금) 23h 이 클래스의 다른 테스트들과 같이 테스트 시 createItemsList()에서 id가 계속 쌓이는 바, 테스트 결과 예측 어려움
+        assertThat(searchResult.get(0).getPrice()).isEqualTo(10010);
     }
 
     // 2023.5.31(수) 18h25
