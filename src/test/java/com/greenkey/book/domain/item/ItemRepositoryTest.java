@@ -1,12 +1,14 @@
 package com.greenkey.book.domain.item;
 
 import com.greenkey.book.constant.ItemSellStatus;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -60,7 +62,6 @@ class ItemRepositoryTest {
 
     // 2023.5.31(수) 1h15 테스트용 상품 10개 만드는 메서드
     public void createItemsList() {
-        int stockNum = 100;
         ItemSellStatus itemSellStatus = ItemSellStatus.SELL;
 
         for (int i = 1; i <= 10; i++) {
@@ -84,6 +85,29 @@ class ItemRepositoryTest {
 
             itemRepository.save(stubItem);
              */
+        }
+    }
+
+    // 2023.6.3(토) 23h45
+    public void createItemsList2() {
+        for (int i = 1; i <= 5; i++) {
+            itemRepository.save(Item.builder()
+                    .name(this.name + i)
+                    .price(this.price + i)
+                    .stockNum(this.stockNum)
+                    .description(this.description + i)
+                    .itemSellStatus(this.itemSellStatus)
+                    .build());
+        }
+
+        for (int i = 6; i <= 10; i++) {
+            itemRepository.save(Item.builder()
+                    .name(this.name + i)
+                    .price(this.price + i)
+                    .stockNum(0)
+                    .description(this.description + i)
+                    .itemSellStatus(ItemSellStatus.SOLD_OUT)
+                    .build());
         }
     }
 
@@ -176,7 +200,7 @@ class ItemRepositoryTest {
 
     // 2023.6.2(금) 23h5
     @Test
-    @DisplayName("Querydsl 조회 테스트1")
+    @DisplayName("상품 Querydsl 조회 테스트1")
     public void queryDslTest1() {
         // given
         createItemsList();
@@ -194,5 +218,26 @@ class ItemRepositoryTest {
         // then
         assertThat(searchResult.size()).isEqualTo(10);
         assertThat(searchResult.get(0).getPrice()).isEqualTo(10010);
+    }
+
+    // 2023.6.3(토) 23h50
+    @Test
+    @DisplayName("상품 Querydsl 조회 테스트2")
+    public void queryDslTest2() {
+        // given
+        createItemsList2();
+
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        String searchDescription = "설명";
+        int searchPrice = 10003;
+        String searchItemSellStatus = "SELL";
+
+        booleanBuilder.and(item.description.like("%" + searchDescription + "%"));
+        booleanBuilder.and(item.price.gt(searchPrice));
+
+        // when
+//        if ()
+
+        // then
     }
 }
