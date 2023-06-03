@@ -8,9 +8,11 @@ import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
@@ -227,7 +229,7 @@ class ItemRepositoryTest {
         // given
         createItemsList2();
 
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        BooleanBuilder booleanBuilder = new BooleanBuilder(); // 쿼리에 들어갈 조건을 만들어주는 빌더
         String searchDescription = "설명";
         int searchPrice = 10003;
         String searchItemSellStatus = "SELL";
@@ -235,9 +237,19 @@ class ItemRepositoryTest {
         booleanBuilder.and(item.description.like("%" + searchDescription + "%"));
         booleanBuilder.and(item.price.gt(searchPrice));
 
+        // 잘 이해 안가는 조건
+
         // when
-//        if ()
+        Pageable pageable = PageRequest.of(0, 5);
+        Page<Item> itemPagingResult = itemRepository.findAll(booleanBuilder, pageable);
+
+        List<Item> resultItemList = itemPagingResult.getContent();
 
         // then
+        System.out.println("total elements = " + itemPagingResult.getTotalElements());
+
+        for (Item resultItem : resultItemList) {
+            System.out.println(resultItem.toString());
+        }
     }
 }
