@@ -1,9 +1,9 @@
 package com.greenkey.book.web;
 
-import com.greenkey.book.domain.post.Post;
-import com.greenkey.book.domain.post.PostRepository;
-import com.greenkey.book.web.dto.PostSaveRequestDto;
-import com.greenkey.book.web.dto.PostUpdateRequestDto;
+import com.greenkey.book.post.domain.Post;
+import com.greenkey.book.post.domain.PostRepository;
+import com.greenkey.book.post.dto.PostSaveRequestDto;
+import com.greenkey.book.post.dto.PostUpdateRequestDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,11 +13,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;

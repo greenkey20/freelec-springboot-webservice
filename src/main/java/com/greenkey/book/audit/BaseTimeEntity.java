@@ -1,4 +1,4 @@
-package com.greenkey.book.domain;
+package com.greenkey.book.audit;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

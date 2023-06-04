@@ -1,4 +1,4 @@
-package com.greenkey.book.web;
+package com.greenkey.book.web.controller;
 
 import com.greenkey.book.web.dto.HelloResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;

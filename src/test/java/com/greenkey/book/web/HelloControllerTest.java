@@ -1,5 +1,6 @@
 package com.greenkey.book.web;
 
+import com.greenkey.book.web.controller.HelloController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 // 2023.5.7(일) 19h50
 @ExtendWith(SpringExtension.class)

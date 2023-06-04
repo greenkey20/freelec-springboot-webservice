@@ -1,6 +1,6 @@
-package com.greenkey.book.domain.post;
+package com.greenkey.book.post.domain;
 
-import com.greenkey.book.domain.BaseTimeEntity;
+import com.greenkey.book.audit.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

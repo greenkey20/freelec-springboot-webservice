@@ -1,6 +1,8 @@
 package com.greenkey.book.domain.item;
 
 import com.greenkey.book.constant.ItemSellStatus;
+import com.greenkey.book.item.domain.Item;
+import com.greenkey.book.item.domain.ItemRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

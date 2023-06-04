@@ -1,5 +1,7 @@
 package com.greenkey.book.domain.post;
 
+import com.greenkey.book.post.domain.Post;
+import com.greenkey.book.post.domain.PostRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

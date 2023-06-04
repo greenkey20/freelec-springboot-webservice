@@ -1,10 +1,10 @@
-package com.greenkey.book.service.post;
+package com.greenkey.book.post.service;
 
-import com.greenkey.book.domain.post.Post;
-import com.greenkey.book.domain.post.PostRepository;
-import com.greenkey.book.web.dto.PostResponseDto;
-import com.greenkey.book.web.dto.PostSaveRequestDto;
-import com.greenkey.book.web.dto.PostUpdateRequestDto;
+import com.greenkey.book.post.domain.Post;
+import com.greenkey.book.post.domain.PostRepository;
+import com.greenkey.book.post.dto.PostResponseDto;
+import com.greenkey.book.post.dto.PostSaveRequestDto;
+import com.greenkey.book.post.dto.PostUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

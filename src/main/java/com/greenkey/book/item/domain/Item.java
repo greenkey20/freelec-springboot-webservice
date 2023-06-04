@@ -1,7 +1,7 @@
-package com.greenkey.book.domain.item;
+package com.greenkey.book.item.domain;
 
 import com.greenkey.book.constant.ItemSellStatus;
-import com.greenkey.book.domain.BaseTimeEntity;
+import com.greenkey.book.audit.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

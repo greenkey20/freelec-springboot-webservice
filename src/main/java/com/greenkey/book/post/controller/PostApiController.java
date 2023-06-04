@@ -1,9 +1,9 @@
-package com.greenkey.book.web;
+package com.greenkey.book.post.controller;
 
-import com.greenkey.book.service.post.PostService;
-import com.greenkey.book.web.dto.PostResponseDto;
-import com.greenkey.book.web.dto.PostSaveRequestDto;
-import com.greenkey.book.web.dto.PostUpdateRequestDto;
+import com.greenkey.book.post.service.PostService;
+import com.greenkey.book.post.dto.PostResponseDto;
+import com.greenkey.book.post.dto.PostSaveRequestDto;
+import com.greenkey.book.post.dto.PostUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

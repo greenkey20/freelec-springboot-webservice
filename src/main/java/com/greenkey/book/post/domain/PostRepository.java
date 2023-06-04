@@ -1,4 +1,4 @@
-package com.greenkey.book.domain.post;
+package com.greenkey.book.post.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

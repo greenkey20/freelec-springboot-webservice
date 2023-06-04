@@ -1,6 +1,6 @@
-package com.greenkey.book.web.dto;
+package com.greenkey.book.post.dto;
 
-import com.greenkey.book.domain.post.Post;
+import com.greenkey.book.post.domain.Post;
 import lombok.Getter;
 
 // 2023.5.26(금) 1h10

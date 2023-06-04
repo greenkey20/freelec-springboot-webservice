@@ -1,4 +1,4 @@
-package com.greenkey.book.web.dto;
+package com.greenkey.book.post.dto;
 
 import lombok.Builder;
 import lombok.Getter;

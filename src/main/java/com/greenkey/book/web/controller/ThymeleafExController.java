@@ -1,6 +1,6 @@
-package com.greenkey.book.controller;
+package com.greenkey.book.web.controller;
 
-import com.greenkey.book.dto.ItemDto;
+import com.greenkey.book.item.dto.ItemDto;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
