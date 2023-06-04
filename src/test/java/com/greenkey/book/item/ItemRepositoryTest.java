@@ -1,4 +1,4 @@
-package com.greenkey.book.domain.item;
+package com.greenkey.book.item;
 
 import com.greenkey.book.constant.ItemSellStatus;
 import com.greenkey.book.item.domain.Item;

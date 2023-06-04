@@ -1,4 +1,4 @@
-package com.greenkey.book.web;
+package com.greenkey.book.web.controller;
 
 import com.greenkey.book.web.controller.HelloController;
 import org.junit.jupiter.api.Test;

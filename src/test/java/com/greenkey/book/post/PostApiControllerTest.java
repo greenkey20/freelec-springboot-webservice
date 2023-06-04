@@ -1,4 +1,4 @@
-package com.greenkey.book.web;
+package com.greenkey.book.post;
 
 import com.greenkey.book.post.domain.Post;
 import com.greenkey.book.post.domain.PostRepository;

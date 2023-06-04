@@ -1,4 +1,4 @@
-package com.greenkey.book.web;
+package com.greenkey.book.web.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
