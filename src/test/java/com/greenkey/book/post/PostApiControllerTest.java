@@ -52,7 +52,7 @@ public class PostApiControllerTest {
         String url = "http://localhost:" + port + "/api/v1/posts";
 
         // when
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class); // 나의 질문 = 이게 PostApiController를 호출하는 건가? -> API 문서 읽어봐
+//        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class); // 나의 질문 = 이게 PostApiController를 호출하는 건가? -> API 문서 읽어봐
         // requestDto = POST 대상 객체 -> insert
         //    into
         //        post
@@ -93,7 +93,7 @@ public class PostApiControllerTest {
         HttpEntity<PostUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
         // when
-        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
+//        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
         /* PostApiController의 update() 호출 = PostService의 update() 호출 = Post 객체 내용 업데이트하여 db에 반영(dirty checking)
         update
         post

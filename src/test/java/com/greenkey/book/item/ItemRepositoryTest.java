@@ -19,7 +19,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
-import static com.greenkey.book.domain.item.QItem.item;
+import static com.greenkey.book.item.domain.QItem.item;
 import static org.assertj.core.api.Assertions.assertThat;
 
 // 2023.5.31(수) 0h30
