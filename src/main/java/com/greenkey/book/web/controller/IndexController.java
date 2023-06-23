@@ -1,9 +1,11 @@
 package com.greenkey.book.web.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 // 2023.5.27(토) 16h50
+@RequiredArgsConstructor
 @Controller // 나의 질문 = @RestController와의 차이점?
 public class IndexController {
     /**
@@ -14,5 +16,11 @@ public class IndexController {
     @GetMapping("/")
     public String index() {
         return "index";
+    }
+
+    // 2023.6.23(금) 22h45
+    @GetMapping("/posts/save")
+    public String postsSave() {
+        return "posts-save";
     }
 }
