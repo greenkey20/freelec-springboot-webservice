@@ -4,6 +4,7 @@ import com.greenkey.book.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -19,8 +20,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
     // 2023.6.4(일) 18h20
-    @Autowired
+//    @Autowired
     MemberService memberService;
+    // 2023.6.23(금) 22h25 순환참조 문제의 임시 해결을 위해 @Lazy 어노테이션을 통한 지연로딩 vs 가장 이상적인건 스프링 빈들의 관계를 재설계해서 문제를 해결
+    public SecurityConfig(@Lazy MemberService memberService) {
+        this.memberService = memberService;
+    }
 
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
@@ -35,7 +40,7 @@ public class SecurityConfig {
 
         // 2023.6.4(일) 18h35
         http.authorizeHttpRequests()
-                .requestMatchers("/", "/members/**", "/items/**", "/images/**").permitAll()
+                .requestMatchers("/", "/members/**", "/items/**", "/images/**", "/posts/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
@@ -46,7 +51,6 @@ public class SecurityConfig {
     // 2023.2월 main project 설정 파일 참고
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         return http.build();
     }
 
