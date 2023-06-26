@@ -42,10 +42,19 @@ public class PostService {
     }
 
     // 2023.6.25(일) 17h10 게시글 전체 조회
-    @Transactional(readOnly = true) // 트랜잭션 번위는 유지 + 조회 기능만 남겨 조회 속도 개선
+    @Transactional(readOnly = true) // 트랜잭션 범위는 유지 + 조회 기능만 남겨 조회 속도 개선
     public List<PostListResponseDto> findAllDesc() {
         return postRepository.findAllByOrderById().stream()
                 .map(post -> new PostListResponseDto(post))
                 .collect(Collectors.toList());
     }
+
+    // 2023.6.26(월) 20h40
+    @Transactional
+    public void delete(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalCallerException("해당 게시글이 없습니다. id = " + id));
+        postRepository.delete(post); // 이렇게 엔티티를 매개변수로 넘겨 삭제할 수도 있고, deleteById 메서드 이용해서 id로 삭제할 수도 있음
+//        postRepository.deleteById(id);
+    }
+
 }

@@ -9,6 +9,7 @@ var main = {
             _this.update();
         });
 
+        // 게시글 삭제 기능 추가
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
@@ -54,6 +55,7 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+    // 게시글 삭제 기능 추가
     delete : function () {
         var id = $('#id').val();
 

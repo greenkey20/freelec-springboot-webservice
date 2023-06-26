@@ -28,4 +28,11 @@ public class PostApiController {
     public PostResponseDto findById(@PathVariable Long id) {
         return postService.findById(id);
     }
+
+    // 2023.6.26(월) 20h45
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postService.delete(id);
+        return id;
+    }
 }
