@@ -1,10 +1,12 @@
 package com.greenkey.book.web.controller;
 
+import com.greenkey.book.post.dto.PostResponseDto;
 import com.greenkey.book.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 // 2023.5.27(토) 16h50
 @RequiredArgsConstructor
@@ -28,5 +30,14 @@ public class IndexController {
     @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save";
+    }
+
+    // 2023.6.26(월) 20h30
+    @GetMapping("/posts/update/{id}")
+    public String postsUpdate(@PathVariable Long id, Model model) {
+        PostResponseDto dto = postService.findById(id);
+        model.addAttribute("post", dto);
+
+        return "posts-update";
     }
 }
